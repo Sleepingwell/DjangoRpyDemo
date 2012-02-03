@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block header_content %}
+<script type="text/javascript">
+    function selectSite() {
+        $("id_site").update("").disable();
+        $("plot_div").update("");
+        new Ajax.Request('getSites', {
+		method:"get",
+            parameters: "value=" + $("id_series").value,
+            onSuccess: function(response) {
+                $("div_of_death").update("");
+                $("id_site").update(response.responseText);
+                $("id_site").enable();
+            },
+            onFailure: function(response) {
+                $("div_of_death").update(response.responseText);
+            }
+        });
+    }
+
+    function doJobby() {
+        new Ajax.Request('doFDC', {
+            method:"get",
+            parameters: "value=" + $("id_site").value,
+            onSuccess: function(response) {
+                $("div_of_death").update("");
+                $("plot_div").update(response.responseText);
+            },
+            onFailure: function(response) {
+                $("div_of_death").update(response.responseText);
+                $("plot_div").update("");
+            }
+        });
+
+    }  
+</script>
+{% endblock %}
+{% block content %}
+<h2>Boxplots</h2>
+<div class="form_wrapper" style="padding-top: 10px;">
+    <form action="/fdc" method="post">
+        {% csrf_token %}
+        <table>
+            {% for field in form %}
+            <tr>
+                <td class="form_label">{{ field.label_tag }}</td>
+                <td>{{field}}</td>
+            </tr>
+            {% endfor %}
+         </table>
+    </form>
+</div>
+<div id="plot_div"></div>
+<div id="div_of_death"></div>
+{% endblock %}

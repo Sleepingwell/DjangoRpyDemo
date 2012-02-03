@@ -1,0 +1,5 @@
+If you have Django and Rpy2 installed, you should only need to change the location of your template directories in settings.py, then run:
+
+python manage.py runserver
+
+in the top level directory to get this going.

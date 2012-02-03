@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>Demo Site</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="/static/css/screen.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="/static/js/prototype.js"></script>
+        {% block header_content %} <h1>Content will appear here!</h1> {% endblock %}
+    </head>
+    <body>
+        <div id="wrapper">
+            <h1><a href="/">HOME</a></h1>
+            <div id="content">
+                {% block content %} <h1>Content will appear here!</h1> {% endblock %}
+            </div>
+            <div id="footer">
+                {% block footerContent %}{% endblock %}
+            </div>
+        </div>
+    </body>
+</html>
+
+
