@@ -2,6 +2,12 @@
 {% block header_content %}
 <script type="text/javascript">
     function selectSite() {
+        if ($("id_series").value == '') {
+            $("div_of_death").update("");
+            $("id_site").update("").disable();
+            $("plot_div").update("");
+            return;
+        }
         $("id_site").update("").disable();
         $("plot_div").update("");
         new Ajax.Request('getSites', {
@@ -19,6 +25,10 @@
     }
 
     function doJobby() {
+        if ($("id_site").value == '') {
+            $("plot_div").update("");
+            return;
+        }            
         new Ajax.Request('doFDC', {
             method:"get",
             parameters: "value=" + $("id_site").value,

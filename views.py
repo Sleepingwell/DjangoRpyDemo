@@ -30,14 +30,15 @@ def index(request):
 class MainForm(forms.Form):
     seriesTypes = [('rainfall', 'mm'), ('elevation', 'm')]
     seriesTypes = map(lambda x: ("%s_%s" % (x[0], x[1]), "%s (%s)" % (x[0], x[1])), seriesTypes)
+    seriesTypes.insert(0, ('', 'please select a series type'))
     series = forms.ChoiceField(choices=seriesTypes, widget=forms.Select(attrs={'onchange': 'selectSite()'}))
     site = forms.ChoiceField(widget=forms.Select(attrs={'onchange': 'doJobby()', 'disabled': 'disabled'}))
-
 
 def getSites(request):
     (seriesType, units) = request.GET["value"].split("_")
     availableSites = [('site1a', 'site1'), ('site2a', 'site2')]
     availableSites = map(lambda x: ("%s|%s" % (x[0], x[1]), x[1]), availableSites)
+    availableSites.insert(0, ('', 'please select a site'))
     response = render_to_response("sites_list.html", {'sites': availableSites})
     response.set_cookie("seriesType", seriesType)
     response.set_cookie("units", units)
