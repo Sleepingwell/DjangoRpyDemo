@@ -26,7 +26,6 @@ R("""renderer <- function(filename, title, units) {
 def index(request):
     return render_to_response('index.html', {'form': MainForm()}, context_instance=RequestContext(request))
 
-
 class MainForm(forms.Form):
     seriesTypes = [('rainfall', 'mm'), ('elevation', 'm')]
     seriesTypes = map(lambda x: ("%s_%s" % (x[0], x[1]), "%s (%s)" % (x[0], x[1])), seriesTypes)
