@@ -1,10 +1,12 @@
+## Installation
+
 If you have Django and Rpy2 installed, you should be able to just run:
 
     python manage.py runserver
 
 in the top level directory to get this going.
 
-***
+## Notes for Linux
 
 gonavald and dzhibas note that on linux:
 you can install django, R and Rpy2 with:
